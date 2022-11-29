@@ -1,4 +1,24 @@
-input {
-    color: white;
+.form__background {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
 }
 
+.textfield__label {
+    color: #0F57B7 !important;
+}
+
+.submitButton {
+    margin-top: 1.5rem;
+    background-color: #0F57B7;
+    color: white;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    opacity: 70%;
+}
+
+.submitButton:hover {
+    opacity: 100%;
+}
