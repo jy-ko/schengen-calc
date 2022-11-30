@@ -7,19 +7,14 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { MenuItem, Select, TextField } from "@mui/material";
+import { ITrip } from "../Interfaces";
 
-type FormValues = {
-  country: string;
-  startDate: string;
-  endDate: string;
-};
-
-export default function Form() {
+export default function Form(addTrip:any) {
   const {
-    handleSubmit,
     control,
+    handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<ITrip>();
 
   const generateSelectOptions = () => {
     return countries.map((option) => {
@@ -30,9 +25,14 @@ export default function Form() {
       );
     });}
   
+  function onSubmit(data:any) {
+    console.log(data)
+    addTrip(data)
+  }
+  
   return (
     <div className="form__background">
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3} sx={{ width: 300 }}>
           <Controller
             name="country"
@@ -50,6 +50,7 @@ export default function Form() {
               name="startDate"
               defaultValue={`${dayjs()}`}
               control={control}
+              rules={{ required: true}}
               render={({ field: { onChange, value } }) => (
                 <DesktopDatePicker
                   label="Start Date"
@@ -65,6 +66,7 @@ export default function Form() {
               name="endDate"
               defaultValue={`${dayjs()}`}
               control={control}
+              rules={{ required: true}}
               render={({ field: { onChange, value } }) => (
                 <DesktopDatePicker
                   label="End Date"
