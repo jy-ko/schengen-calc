@@ -9,30 +9,19 @@ import {
 } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ITrip, ITrips } from "../Interfaces";
+import "./Trips.css"
 
-const Trips = (trips:any) => {
+const Trips: React.FC<ITrips> = (props) => {
   return (
     <div>
-      <Grid item xs={12} md={6}>
-        <List>
-          {trips.map((trip:any) => {
-            <ListItem
-              secondaryAction={
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteIcon />
-                </IconButton>
-              }
-            >
-              <ListItemAvatar>
-                <Avatar>
-                  <FolderIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={`${trip}`} />
-            </ListItem>;
-          })}
-        </List>
-      </Grid>
+      <ul className="trip__list">
+      {props.trips.flatMap((trip, index) => (
+        <>
+        <li className="trip__item" key={index}>{trip.country}{trip.startDate}{trip.endDate}<DeleteIcon/></li>
+        </>
+      ))} 
+      </ul>
     </div>
   );
 };

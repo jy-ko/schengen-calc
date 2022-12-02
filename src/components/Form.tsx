@@ -7,9 +7,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { MenuItem, Select, TextField } from "@mui/material";
-import { ITrip } from "../Interfaces";
+import { ITrip, FormProps } from "../Interfaces";
+import React from "react";
 
-export default function Form(addTrip:any) {
+const Form: React.FC<FormProps> = (props) => {
   const {
     control,
     handleSubmit,
@@ -26,8 +27,7 @@ export default function Form(addTrip:any) {
     });}
   
   function onSubmit(data:any) {
-    console.log(data)
-    addTrip(data)
+    props.addTrip(data)
   }
   
   return (
@@ -87,3 +87,5 @@ export default function Form(addTrip:any) {
     </div>
   );
 }
+
+export {Form};
