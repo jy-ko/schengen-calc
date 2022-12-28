@@ -14,6 +14,7 @@ function App() {
       endDate: trip.endDate,
     };
     setTrips([...trips, newTrip]);
+    console.log(trips);
   };
   return (
     <div className="App">
