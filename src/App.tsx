@@ -3,12 +3,14 @@ import "./App.css";
 import { Form}  from "./components/Form";
 import Trips from "./components/Trips";
 import { ITrip } from "./Interfaces";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [trips, setTrips] = useState<ITrip[] >([]);
 
   const addTrip = (trip: ITrip): void => {
     const newTrip = {
+      id: uuidv4(),
       country: trip.country,
       startDate: trip.startDate,
       endDate: trip.endDate,
@@ -16,6 +18,10 @@ function App() {
     setTrips([...trips, newTrip]);
     console.log(trips);
   };
+  const deleteTrip = (id:string ) => {
+    const newTrip = trips.filter(trip => trip.id === id);  
+    setTrips([...trips, newTrip]);
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -23,7 +29,7 @@ function App() {
         <Form addTrip={addTrip} />
         <p>Your trips</p>
         { trips.length >=1 && (
-          <Trips trips={trips}/>
+          <Trips trips={trips} deleteTrip={deleteTrip}/>
         )}
       </header>
     </div>
