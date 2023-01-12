@@ -8,14 +8,16 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { MenuItem, Select, TextField } from "@mui/material";
 import { ITrip, FormProps } from "../Interfaces";
-import React from "react";
 
 const Form: React.FC<FormProps> = (props) => {
   const {
     control,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<ITrip>();
+
+  const watchStartDate = watch("startDate")
 
   const generateSelectOptions = () => {
     return countries.map((option) => {
@@ -64,7 +66,7 @@ const Form: React.FC<FormProps> = (props) => {
             />
             <Controller
               name="endDate"
-              defaultValue={`${dayjs()}`}
+              defaultValue={watchStartDate}
               control={control}
               rules={{ required: true}}
               render={({ field: { onChange, value } }) => (
@@ -75,6 +77,7 @@ const Form: React.FC<FormProps> = (props) => {
                   onChange={onChange}
                   InputProps={{ className: "textfield__label" }}
                   renderInput={(params) => <TextField {...params} />}
+                  minDate={watchStartDate}
                 />
               )}
             />

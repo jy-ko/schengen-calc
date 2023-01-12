@@ -17,6 +17,7 @@
     border-radius: 0.5rem;
     border: none;
     opacity: 70%;
+    cursor: pointer;
 }
 
 .submitButton:hover {

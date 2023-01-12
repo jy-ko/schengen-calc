@@ -1,26 +1,21 @@
-import {
-  Avatar,
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-} from "@mui/material";
-import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ITrip, ITrips } from "../Interfaces";
+import { ITrips } from "../Interfaces";
 import "./Trips.css"
+import dayjs from "dayjs";
+
 
 const Trips: React.FC<ITrips> = (props) => {
   return (
     <div>
       <ul className="trip__list">
-      {props.trips.flatMap((trip, index) => (
-        <>
-        <li className="trip__item" key={index}>{trip.country}{trip.startDate}{trip.endDate}<DeleteIcon/></li>
-        </>
-      ))} 
+        {props.trips.flatMap((trip, index) => (
+          <li className="trip__item" key={index}>
+            {trip.country}
+            <p className="tripStartDate">Start: {dayjs(trip.startDate).format('DD/MM/YYYY')}</p>
+            <p className="tripEndDate">End: {dayjs(trip.endDate).format('DD/MM/YYYY')} </p>
+          <DeleteIcon onClick={() => props.deleteTrip(trip)}/>
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -1,7 +1,15 @@
 .trip__list {
-    margin: 0 auto;
+    margin: 0;
+    padding-inline-start: 0;
 }
 
 .trip__item {
     list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tripStartDate {
+    font-size: 1em;
 }
