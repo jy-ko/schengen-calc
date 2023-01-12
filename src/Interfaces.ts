@@ -8,7 +8,7 @@ export interface ITrip {
 
 export interface ITrips {
   trips: ITrip[];
-  deleteTrip(id:string): void
+  deleteTrip(trip:ITrip): void
 }
 
 export interface FormProps {

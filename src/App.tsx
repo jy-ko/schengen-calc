@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Form}  from "./components/Form";
 import Trips from "./components/Trips";
@@ -16,11 +16,12 @@ function App() {
       endDate: trip.endDate,
     };
     setTrips([...trips, newTrip]);
-    console.log(trips);
+    // console.log(trips);
   };
-  const deleteTrip = (id:string ) => {
-    const newTrip = trips.filter(trip => trip.id === id);  
-    setTrips([...trips, newTrip]);
+  const deleteTrip = (selectedTrip: ITrip ) => {
+    const updatedTrips = trips.filter(trip => trip.id === selectedTrip.id );  
+    setTrips(updatedTrips);
+    // console.log(updatedTrips);
   }
   return (
     <div className="App">

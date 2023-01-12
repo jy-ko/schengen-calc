@@ -13,7 +13,7 @@ const Trips: React.FC<ITrips> = (props) => {
             {trip.country}
             <p className="tripStartDate">Start: {dayjs(trip.startDate).format('DD/MM/YYYY')}</p>
             <p className="tripEndDate">End: {dayjs(trip.endDate).format('DD/MM/YYYY')} </p>
-          <DeleteIcon onClick={() => props.deleteTrip(trip.id)}/>
+          <DeleteIcon onClick={() => props.deleteTrip(trip)}/>
           </li>
         ))}
       </ul>
